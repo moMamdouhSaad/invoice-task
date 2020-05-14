@@ -1,0 +1,5 @@
+#notes-container{
+    max-height: 250px;
+    height: 150px;
+    overflow-y: auto;
+}
