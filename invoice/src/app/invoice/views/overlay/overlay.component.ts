@@ -26,9 +26,9 @@ export class OverlayComponent implements OnInit {
     this.readFileService.readFile(file)
   }
 
-fileChanged(e) {
+  fileChanged(e) {
     let file = e.target.files[0];
-     this.readFileService.readFile(file);
+    this.readFileService.readFile(file);
   }
 
 }

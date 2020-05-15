@@ -1,8 +1,13 @@
 
 <div class='container main-container'>
-    <div style='text-align: center;margin-top:10px'>
-    <button type="button" class="btn btn-primary">Import</button>
-    <button type="button" class="btn btn-danger">Export</button>
+    <div *ngIf='showBtnsContainer' style='text-align: center;margin-top:10px'>
+        <input #fileInput type='file' accept=".json" (change)="fileChanged($event)" style="display:none;">
+        <button  type='file' (click)="fileInput.click()" class="btn btn-primary">Import</button>
+        <button type="button"  class="btn btn-danger"><a [href]="downloadJsonHref" download="{{readFileService.getCurrentFileName$() | async}}">Export</a></button>
+           <p *ngIf='importErr' style='color:red;margin-top:10px'><b>{{fileErrMsg}}</b></p>
+           <p *ngIf='jsonErr' style='color:red;margin-top:10px'><b>{{jsonErrMsg}}</b></p> 
+
+           <p style='margin-top:10px'><span style='color:green'><b> Current file view :  </b></span><b> {{readFileService.getCurrentFileName$() | async}} </b> </p>
     </div>
     <hr/>
 <app-invoice-header [invoiceHeader]='invoiceHeader'></app-invoice-header>

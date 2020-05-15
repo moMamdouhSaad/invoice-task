@@ -14,18 +14,21 @@
 }
 .btn-container{
     text-align: center;
-    border: 2px rgb(92, 89, 89) dashed;
+    border: 2px rgb(92, 89, 89) solid;
     width: 100%;
-    padding:15px
+    padding:15px;
+    background-color: rgba(240, 248, 255, 0.774);
 }
 .btn-containerErr{
     text-align: center;
-    border: 2px rgb(252, 0, 0) dashed;
+    border: 2px rgb(252, 0, 0) solid;
     width: 100%;
-    padding:15px
+    padding:15px;
+    background-color: rgba(240, 248, 255, 0.774);
+
 }
 span{
     margin-right:10px;
-    color:white;
+    color:rgb(7, 7, 7);
     font-weight: 500;
 }

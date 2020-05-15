@@ -7,6 +7,7 @@ import { invoiceInfo } from 'src/app/interfaces/invoiceInfo';
 import { invoiceItems } from 'src/app/interfaces/invoiceItems';
 import { invoiceAmount } from 'src/app/interfaces/invoiceAmount';
 import { Item } from 'src/app/interfaces/item';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-invoice',
@@ -15,7 +16,13 @@ import { Item } from 'src/app/interfaces/item';
 })
 export class InvoiceComponent implements OnInit {
 
-  constructor(private overlayService: OverlayService, private readFileService: ReadFileService) { }
+  fileErrMsg:string = "You must only select .json files";
+  importErr:boolean = false;
+  jsonErrMsg:string = "Your json inputs  is not compatible with system requirements";
+  jsonErr:boolean = false;
+  showBtnsContainer:boolean = false;
+  downloadJsonHref: SafeUrl;
+  constructor(private overlayService: OverlayService, public readFileService: ReadFileService,private sanitizer: DomSanitizer) { }
    
    invoiceHeader: InvoiceHeader;
    invoiceInfo: invoiceInfo; 
@@ -24,12 +31,23 @@ export class InvoiceComponent implements OnInit {
    invoiceAmount: invoiceAmount;
 
   ngOnInit(): void {
+    this.getJsonInputs();
+    this.overlayService.showOverlay();
+    this.readFileService.getJsonFileErr$().subscribe((data:boolean)=>{
+       if(data == false){
+        this.overlayService.hideOverlay();
+        this.showBtnsContainer = true
 
+      }
+    })
+    this.readFileService.getFileTypeErr$().subscribe(data=>this.importErr = data);
+    this.readFileService.getJsonFileErr$().subscribe(data=>this.jsonErr = data);
+  }
+
+  getJsonInputs(){
     this.readFileService.getFileData$().subscribe(inputs=>{
-
       const invoiceInputs: Invoice = inputs;
-
-      console.log(invoiceInputs);
+      this.generateDownloadJsonUri(invoiceInputs)
 
       //assign invoice header
       this.invoiceHeader = {
@@ -59,10 +77,12 @@ export class InvoiceComponent implements OnInit {
       this.invoiceNotes = invoiceInputs.notes;
 
       //assign invoice amounts
+
       const subTotal = this.getSubtotal(this.invoiceItems);
       const subTotalLessDiscount = subTotal - invoiceInputs.discount;
       const totalTax = invoiceInputs.taxRate/100 * subTotalLessDiscount;
       const balancePaid =  subTotalLessDiscount + totalTax + invoiceInputs.shipping;
+
       this.invoiceAmount = {
         subTotal: subTotal,
         subTotalLessDiscount: subTotalLessDiscount,
@@ -72,19 +92,8 @@ export class InvoiceComponent implements OnInit {
         shipping: invoiceInputs.shipping,
         balancePaid:balancePaid
       }
-           
-        console.log(this.invoiceAmount)
-
     });
 
-
-
-       this.overlayService.showOverlay();
-       this.readFileService.getJsonFileErr$().subscribe((data:boolean)=>{
-       if(data == false){
-        this.overlayService.hideOverlay();
-      }
-    })
   }
 
   getSubtotal(items:Item[]){
@@ -96,8 +105,20 @@ export class InvoiceComponent implements OnInit {
     return subTotal
   }
 
-  getTotalTax(){
-
+  readFile(file: File){
+    this.readFileService.readFile(file)
   }
+
+  fileChanged(e) {
+    let file = e.target.files[0];
+     this.readFileService.readFile(file);
+  }
+
+  generateDownloadJsonUri(json) {
+    var theJSON = JSON.stringify(json);
+    console.log(theJSON)
+    var uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
+    this.downloadJsonHref = uri;
+}
 
 }
