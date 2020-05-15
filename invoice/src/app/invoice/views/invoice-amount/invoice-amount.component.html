@@ -4,48 +4,48 @@
         <p>SUBTOTAL</p>
     </div>
     <div class='col-6'>
-        <p>$235.25</p>
+        <p>${{ invoiceAmount?.subTotal || '00'}}</p>
     </div>
 
     <div class='col-6'>
         <p>Discount</p>
     </div>
     <div class='col-6'>
-        <p>$18.25</p>
+        <p>${{invoiceAmount?.discount || '00'}}</p>
     </div>
 
     <div class='col-6'>
         <p>SUBTOTAL LESS DISCOUNT</p>
     </div>
     <div class='col-6'>
-        <p>$235.25</p>
+        <p >${{ invoiceAmount?.subTotalLessDiscount || '00'}}</p>
     </div>
 
     <div class='col-6'>
         <p>TAXRATE</p>
     </div>
     <div class='col-6'>
-        <p>5%</p>
+        <p>%{{invoiceAmount?.taxRate || '00'}}</p>
     </div>
 
     <div class='col-6'>
         <p>TOTAL TAX</p>
     </div>
     <div class='col-6'>
-        <p>$11.25</p>
+        <p>${{ invoiceAmount?.totalTax || '00'}}</p>
     </div>
 
     <div class='col-6'>
         <p> SHIPPING / HANDLING </p>
     </div>
     <div class='col-6'>
-        <p>$235.25</p>
+        <p>${{invoiceAmount?.shipping || '00'}}</p>
     </div>
     <br>
     <div class='col-6'>
         <p><b>BALANCE PAID</b></p>
     </div>
     <div class='col-6'>
-        <p><b>$235.25 </b></p>
+        <p><b>${{invoiceAmount?.balancePaid || '00'}} </b></p>
     </div>
 </div>

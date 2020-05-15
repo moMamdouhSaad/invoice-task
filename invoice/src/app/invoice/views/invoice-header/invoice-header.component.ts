@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { InvoiceHeader } from 'src/app/interfaces/invoiceHeader';
 
 @Component({
   selector: 'app-invoice-header',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invoice-header.component.css']
 })
 export class InvoiceHeaderComponent implements OnInit {
+
+  @Input() invoiceHeader: InvoiceHeader; 
 
   constructor() { }
 

@@ -6,14 +6,16 @@ import { InvoiceItemsComponent } from './views/invoice-items/invoice-items.compo
 import { InvoiceNotesComponent } from './views/invoice-notes/invoice-notes.component';
 import { InvoiceAmountComponent } from './views/invoice-amount/invoice-amount.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { OverlayComponent } from './views/overlay/overlay.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 
 
 @NgModule({
-  declarations: [InvoiceHeaderComponent, InvoiceInfoComponent, InvoiceItemsComponent, InvoiceNotesComponent, InvoiceAmountComponent, InvoiceComponent],
+  declarations: [InvoiceHeaderComponent, InvoiceInfoComponent, InvoiceItemsComponent, InvoiceNotesComponent, InvoiceAmountComponent, InvoiceComponent, OverlayComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    OverlayModule
   ],
-  exports:[InvoiceComponent]
-})
+  exports:[InvoiceComponent]})
 export class InvoiceModule { }

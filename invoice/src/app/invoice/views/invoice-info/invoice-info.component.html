@@ -2,19 +2,19 @@
 
     <div class='col-lg-6 col-md-12'>
         <p> BILL TO : </p>
-         <p> Contact name </p>  
-         <p> Client company name </p>    
-         <p> Address </p>
-         <p> Phone </p>
-         <p> Email </p>
+         <p> {{invoiceInfo?.contactName ||  'Contact name' }} </p>  
+         <p> {{invoiceInfo?.billToClientCompanyName ||  'billToClientCompanyName' }} </p>  
+         <p> {{invoiceInfo?.billToAddress ||  'billToAddress' }} </p>  
+         <p> {{invoiceInfo?.billToPhone ||  'billToPhone' }} </p>  
+         <p> {{invoiceInfo?.billToEmail ||  'billToEmail' }} </p>  
     </div>
 
     <div class='col-lg-6 col-md-12'>
        <p> BILL TO : </p>
-        <p> Name/Dept </p>  
-        <p> Client company name </p>    
-        <p> Address </p>
-        <p> Phone </p>
+       <p> {{invoiceInfo?.shipToName ||  'shipToName' }} </p>  
+       <p> {{invoiceInfo?.shipToClientCompanyName ||  'shipToClientCompanyName' }} </p>  
+       <p> {{invoiceInfo?.shipToAddress ||  'shipToAddress' }} </p>  
+       <p> {{invoiceInfo?.shipToPhone ||  'shipToPhone' }} </p>  
     </div>
 
 </div>

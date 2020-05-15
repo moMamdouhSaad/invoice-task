@@ -1,25 +1,25 @@
 <div class='row'>
     <div class='col-lg-6 .col-md-12'>
-        <p>Company name</p>
+        <p> {{invoiceHeader?.companyName || 'Company name' }} </p>
     </div>
 
     <div class='col-lg-6 .col-md-12'>
-        <p>Date</p>
+        <p>{{invoiceHeader?.date || 'data' }}</p>
     </div>
 </div>
 
 <div class='row'>
     <div class='col-lg-6 .col-md-12'> 
-        <p>address</p>
+      <p>{{invoiceHeader?.address || 'address' }}</p>  
     </div>
     
     <div class='col-lg-6 .col-md-12'>
-        <p>ReceiptNo</p>
+       <p>{{invoiceHeader?.receiptNo || 'receiptNo' }}</p> 
     </div>
 </div>
 
 <div class='row'>
     <div class='col-lg-6 .col-md-12'>
-         <p>City,State,Zip Code</p>
+        <p>{{invoiceHeader?.city || 'city' }}</p> 
     </div>
 </div> 
