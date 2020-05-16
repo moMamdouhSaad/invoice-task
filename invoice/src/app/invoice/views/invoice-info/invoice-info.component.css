@@ -1,3 +1,33 @@
-div{
-    /* border:2px red dashed; */
+
+.bill-ship-header{
+    background-color: rgb(52,58,64);
+    color:white;
+    padding:12px 10px 12px 13px;
+    font-weight: bold;
+    width:100%
 }
+.info-details-wrapper{
+    margin-left: 15px;
+}
+p{
+    font-weight: bold;
+} 
+
+@media only screen and (max-width: 991px) {
+    .bill-ship-header{
+        text-align: center;
+    }
+    .info-wrapper{
+        text-align: center;
+    }
+    .bill-ship-header{
+        background-color: rgb(52,58,64);
+        color:white;
+        padding:12px 0px 12px 3px;
+        font-weight: bold;
+        width:100%
+    }
+    .info-details-wrapper{
+        margin-right: 0px;
+    }
+  }

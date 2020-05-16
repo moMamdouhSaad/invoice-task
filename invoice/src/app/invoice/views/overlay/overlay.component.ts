@@ -14,12 +14,15 @@ export class OverlayComponent implements OnInit {
 
   jsonErrMsg:string = "Your json inputs  is not compatible with system requirements";
   jsonErr:boolean = false;
+  
+  speceficErr:string = null;
 
   constructor(public readFileService: ReadFileService) { }
 
   ngOnInit(): void {
     this.readFileService.getFileTypeErr$().subscribe(data=>this.importErr = data);
     this.readFileService.getJsonFileErr$().subscribe(data=>this.jsonErr = data);
+    this.readFileService.getErrMsg$().subscribe(data=>this.speceficErr = data)
   }
 
   readFile(file: File){

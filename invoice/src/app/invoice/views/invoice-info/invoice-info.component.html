@@ -1,20 +1,26 @@
 <div class='row'>
 
-    <div class='col-lg-6 col-md-12'>
-        <p> BILL TO : </p>
-         <p> {{invoiceInfo?.contactName ||  'Contact name' }} </p>  
-         <p> {{invoiceInfo?.billToClientCompanyName ||  'billToClientCompanyName' }} </p>  
-         <p> {{invoiceInfo?.billToAddress ||  'billToAddress' }} </p>  
-         <p> {{invoiceInfo?.billToPhone ||  'billToPhone' }} </p>  
-         <p> {{invoiceInfo?.billToEmail ||  'billToEmail' }} </p>  
-    </div>
+    <div class='col-lg-5 col-md-12 info-wrapper'>
+        <p class='bill-ship-header'> BILL TO : </p>
+        <div class='info-details-wrapper'>
+         <p> {{invoiceInfo?.contactName ||  '......' }} </p>  
+         <p> {{invoiceInfo?.billToClientCompanyName ||  '......' }} </p>  
+         <p> {{invoiceInfo?.billToAddress ||  '......' }} </p>  
+         <p> {{invoiceInfo?.billToPhone ||  '......' }} </p>  
+         <p> {{invoiceInfo?.billToEmail ||  '......' }} </p>  
+        </div>
 
-    <div class='col-lg-6 col-md-12'>
-       <p> BILL TO : </p>
-       <p> {{invoiceInfo?.shipToName ||  'shipToName' }} </p>  
-       <p> {{invoiceInfo?.shipToClientCompanyName ||  'shipToClientCompanyName' }} </p>  
-       <p> {{invoiceInfo?.shipToAddress ||  'shipToAddress' }} </p>  
-       <p> {{invoiceInfo?.shipToPhone ||  'shipToPhone' }} </p>  
+    </div>
+    <div class='col-lg-2'></div>
+
+    <div class='col-lg-5 col-md-12 info-wrapper' >
+       <p class='bill-ship-header'> SHIP TO : </p>
+       <div class='info-details-wrapper'>
+       <p> {{invoiceInfo?.shipToName ||  '......' }} </p>  
+       <p> {{invoiceInfo?.shipToClientCompanyName ||  '......' }} </p>  
+       <p> {{invoiceInfo?.shipToAddress ||  '......' }} </p>  
+       <p> {{invoiceInfo?.shipToPhone ||  '......' }} </p>  
+       </div>
     </div>
 
 </div>

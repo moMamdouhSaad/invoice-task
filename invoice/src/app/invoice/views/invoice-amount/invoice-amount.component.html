@@ -1,51 +1,64 @@
 <div class='row'>
 
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-8 col-8'  >
         <p>SUBTOTAL</p>
     </div>
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-4 col-4' >
         <p>${{ invoiceAmount?.subTotal || '00'}}</p>
     </div>
 
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-8 col-8'>
         <p>Discount</p>
     </div>
-    <div class='col-6'>
-        <p>${{invoiceAmount?.discount || '00'}}</p>
+    <div class='col-lg-6 col-sm-4 col-4'>
+        <p style='background-color: rgb(247, 97, 130);'>${{invoiceAmount?.discount || '00'}}</p>
     </div>
 
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-8 col-8'>
         <p>SUBTOTAL LESS DISCOUNT</p>
     </div>
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-4 col-4'>
         <p >${{ invoiceAmount?.subTotalLessDiscount || '00'}}</p>
     </div>
 
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-8 col-8'>
         <p>TAXRATE</p>
     </div>
-    <div class='col-6'>
-        <p>%{{invoiceAmount?.taxRate || '00'}}</p>
+    <div class='col-lg-6 col-sm-4 col-4'>
+        <p>{{invoiceAmount?.taxRate || '00'}}%</p>
     </div>
 
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-8 col-8'>
         <p>TOTAL TAX</p>
     </div>
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-4 col-4'>
         <p>${{ invoiceAmount?.totalTax || '00'}}</p>
     </div>
 
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-8 col-8'>
         <p> SHIPPING / HANDLING </p>
     </div>
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-4 col-4' >
         <p>${{invoiceAmount?.shipping || '00'}}</p>
     </div>
     <br>
-    <div class='col-6'>
+    <div class='col-lg-6 col-sm-8 col-8'>
         <p><b>BALANCE PAID</b></p>
     </div>
-    <div class='col-6'>
-        <p><b>${{invoiceAmount?.balancePaid || '00'}} </b></p>
+    <div class='col-lg-6 col-sm-4 col-4'>
+        <p style='background-color: rgb(204,229,255);'><b>${{invoiceAmount?.balancePaid || '00'}} </b></p>
     </div>
 </div>
+
+<!-- <div class='row'>
+
+    <table>
+        <tr><td>hii</td><td>mom</td></tr>
+        <tr><td>ahmeeeed</td><td>aymaaaaaan</td></tr>
+        <tr><td>habebyyyyyyyyyyyyy</td><td>sasaaaaaaa</td></tr>
+        <tr><td>totooo</td><td>loloooooooo</td></tr>
+        <tr><td>sheee</td><td>hgfhhhhhhhhhh</td></tr>
+
+    </table>
+
+</div> -->

@@ -4,8 +4,9 @@
         <input #fileInput type='file' accept=".json" (change)="fileChanged($event)" style="display:none;">
         <button  type='file' (click)="fileInput.click()" class="btn btn-primary">Import</button>
         <button type="button"  class="btn btn-danger"><a [href]="downloadJsonHref" download="{{readFileService.getCurrentFileName$() | async}}">Export</a></button>
-           <p *ngIf='importErr' style='color:red;margin-top:10px'><b>{{fileErrMsg}}</b></p>
-           <p *ngIf='jsonErr' style='color:red;margin-top:10px'><b>{{jsonErrMsg}}</b></p> 
+           <p *ngIf='importErr' style='color:red;margin-top:10px'><b>- {{fileErrMsg}}</b></p>
+           <p *ngIf='jsonErr' style='color:red;margin-top:10px'><b>- {{jsonErrMsg}}</b></p> 
+           <p  *ngIf='speceficErr' style='color:red'><b>- {{speceficErr}}</b></p>
 
            <p style='margin-top:10px'><span style='color:green'><b> Current file view :  </b></span><b> {{readFileService.getCurrentFileName$() | async}} </b> </p>
     </div>
@@ -18,10 +19,11 @@
     <hr/>
 
 <div class='row'>
-    <div class='col-lg-6 col-md-12'>
+    <div class='col-lg-5 col-md-12'>
         <app-invoice-notes [invoiceNotes]='invoiceNotes'></app-invoice-notes>
     </div>
-    <div class='col-lg-6 col-md-12'>
+    <div class='col-lg-2'></div>
+    <div class='col-lg-5 col-md-12'>
         <app-invoice-amount [invoiceAmount]='invoiceAmount'></app-invoice-amount>
     </div>
 

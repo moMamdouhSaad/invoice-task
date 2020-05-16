@@ -1,0 +1,15 @@
+table{
+    width: 100%;
+}
+tr td{
+    padding:0px 10px 0px 10px
+}
+p{
+    font-weight: bold;
+}
+@media only screen and (max-width: 991px) {
+    .main-wrapper{
+       text-align: left;
+        }
+    
+  }

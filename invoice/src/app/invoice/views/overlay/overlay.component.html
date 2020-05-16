@@ -5,8 +5,9 @@
           <span> Plz import invoice's input file</span>
         <button  type='file' (click)="fileInput.click()" class="btn btn-primary">Import</button>
         <input #fileInput type='file' accept=".json" (change)="fileChanged($event)" style="display:none;">
-        <p *ngIf='importErr' style='color:red;margin-top:10px'><b>{{fileErrMsg}}</b></p>
-        <p *ngIf='jsonErr' style='color:red;margin-top:10px'><b>{{jsonErrMsg}}</b></p>
+        <p *ngIf='importErr' style='color:red;margin-top:10px'>{{fileErrMsg}}</p>
+        <p *ngIf='jsonErr' style='color:red;margin-top:10px'>- {{jsonErrMsg}}</p>
+        <p  *ngIf='speceficErr' style='color:red'> - {{speceficErr}}</p>
        </div>
    </div>
   

@@ -1,21 +1,27 @@
-<div class='row'>
-    <table class="table table-light">
-        <thead class="thead-dark">
-          <tr class="d-flex">
-            <th scope="col" class='col-lg-6'>Description</th>
-            <th scope="col" class='col-lg-2'>QTY</th>
-            <th scope="col" class='col-lg-2'>UNIT PRICE</th>
-            <th scope="col" class='col-lg-2'>TOTAL</th>
-          </tr>
-        </thead>
-        <tbody class='table-striped'>
-          <tr class="d-flex" *ngFor='let item of invoiceItems'>
-            <th scope="row" class='col-lg-6'> {{item?.description}} </th>
-            <td class='col-lg-2'> {{item?.qty}} </td>
-            <td class='col-lg-2'> {{item?.unitPrice}} </td>
-            <td class='col-lg-2'> {{item?.unitPrice * item?.qty}} </td>
-          </tr>
-        </tbody>
-      </table>
+<div class='row fixed-table'>
+
+  <div class='col-12'>
+
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr class="d-flex">
+          <th scope="col" class='col-lg-6'>Description</th>
+          <th scope="col" class='col-lg-2'>QTY</th>
+          <th scope="col" class='col-lg-2'>UNIT PRICE</th>
+          <th scope="col" class='col-lg-2'>TOTAL</th>
+        </tr>
+      </thead>
+      <tbody class='table-striped'>
+        <tr class="d-flex table-striped" *ngFor='let item of invoiceItems'>
+          <td scope="row" class='col-lg-6'> {{item?.description}} </td>
+          <td class='col-lg-2'> {{item?.qty}} </td>
+          <td class='col-lg-2'> {{item?.unitPrice}} </td>
+          <td class='col-lg-2'> {{item?.unitPrice * item?.qty}} </td>
+        </tr>
+      </tbody>
+  </table>
+
+  </div>
+    
 
 </div>

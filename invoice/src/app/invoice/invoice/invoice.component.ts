@@ -20,6 +20,7 @@ export class InvoiceComponent implements OnInit {
   importErr:boolean = false;
   jsonErrMsg:string = "Your json inputs  is not compatible with system requirements";
   jsonErr:boolean = false;
+  speceficErr:string = null;
   showBtnsContainer:boolean = false;
   downloadJsonHref: SafeUrl;
   constructor(private overlayService: OverlayService, public readFileService: ReadFileService,private sanitizer: DomSanitizer) { }
@@ -42,6 +43,8 @@ export class InvoiceComponent implements OnInit {
     })
     this.readFileService.getFileTypeErr$().subscribe(data=>this.importErr = data);
     this.readFileService.getJsonFileErr$().subscribe(data=>this.jsonErr = data);
+    this.readFileService.getErrMsg$().subscribe(data=>this.speceficErr = data)
+
   }
 
   getJsonInputs(){

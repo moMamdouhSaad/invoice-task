@@ -13,6 +13,7 @@ export class ReadFileService {
   private fileTypeErr = new BehaviorSubject<boolean>(null);
   private jsonFileErr = new BehaviorSubject<boolean>(null);
   private currentViewfile = new BehaviorSubject<string>(null);
+  private errMsg = new BehaviorSubject<string>(null);
 
   constructor() { }
  jsonKeysMustInclued =
@@ -22,10 +23,7 @@ export class ReadFileService {
 'shipToAddress', 'shipToPhone', 'items', 'notes', 'discount', 'taxRate', 'shipping'
 ];
 
-itemPropertiesMustIncluded = 
-[
-  'qty','description','unitPrice'
-]
+
 
    getAllObjectProps (obj) {
     var keys = [];
@@ -45,6 +43,7 @@ itemPropertiesMustIncluded =
          if( typeof obj[key] != 'number'){
           this.setJsonFileErr(true);
           this.setFileTypeErr(null);
+          this.setErrMsg('discount, taxRate, shipping  keys must be numbers only');
           throw new Error("Json inputs is not compatible with system requirements");         } 
        }   
        keys.push(key);
@@ -61,6 +60,7 @@ itemPropertiesMustIncluded =
           if(qtyCheck && unitPriceCheck){ //now check if their values is numbers
             console.log(item['qty']);
             if(typeof item['qty'] != 'number' || typeof item['unitPrice'] != 'number' ){
+              this.setErrMsg('qty, unitPrice keys must be numbers only');
               return false
             }
           } 
@@ -74,6 +74,8 @@ itemPropertiesMustIncluded =
    if(isCompatibleJson){
     this.dataInFile.next(JSON.parse(data));
     this.setJsonFileErr(false);
+    window.scroll(0,0);
+
    }
    else{
      this.setJsonFileErr(true);
@@ -124,6 +126,13 @@ itemPropertiesMustIncluded =
   }
   getCurrentFileName$(){
     return this.currentViewfile.asObservable();
+  }
+
+  setErrMsg(msg:string){
+    this.errMsg.next(msg);
+  }
+  getErrMsg$(){
+    return this.errMsg.asObservable();
   }
 
 }
