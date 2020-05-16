@@ -99,7 +99,6 @@ export class InvoiceComponent implements OnInit {
   }
 
   getSubtotal(items:Item[]){
-    console.log(items)
     let subTotal = 0;
     for(let item of items){
       subTotal += item.qty * item.unitPrice
@@ -118,7 +117,6 @@ export class InvoiceComponent implements OnInit {
 
   generateDownloadJsonUri(json) {
     var theJSON = JSON.stringify(json);
-    console.log(theJSON)
     var uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
     this.downloadJsonHref = uri;
 }

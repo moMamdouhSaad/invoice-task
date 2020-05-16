@@ -61,7 +61,6 @@ export class ReadFileService {
           let qtyCheck =  item.hasOwnProperty('qty');
           let unitPriceCheck =  item.hasOwnProperty('unitPrice');
           if(qtyCheck && unitPriceCheck){ //now check if their values is numbers
-            console.log(item['qty']);
             if(typeof item['qty'] != 'number' || typeof item['unitPrice'] != 'number' ){
               this.setErrMsg('qty, unitPrice keys must be numbers only');
               return false
