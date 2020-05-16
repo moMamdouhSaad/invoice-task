@@ -12,7 +12,7 @@ export class OverlayComponent implements OnInit {
   fileErrMsg:string = "You must only select .json files";
   importErr:boolean = false;
 
-  jsonErrMsg:string = "Your json inputs  is not compatible with system requirements";
+  jsonErrMsg:string = "Sorry, json inputs  is not compatible with system requirements";
   jsonErr:boolean = false;
   
   speceficErr:string = null;

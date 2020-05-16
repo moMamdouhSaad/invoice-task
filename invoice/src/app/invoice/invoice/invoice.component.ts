@@ -4,7 +4,6 @@ import { ReadFileService } from '../services/read-file.service';
 import { Invoice } from 'src/app/interfaces/invoice';
 import { InvoiceHeader } from 'src/app/interfaces/invoiceHeader';
 import { invoiceInfo } from 'src/app/interfaces/invoiceInfo';
-import { invoiceItems } from 'src/app/interfaces/invoiceItems';
 import { invoiceAmount } from 'src/app/interfaces/invoiceAmount';
 import { Item } from 'src/app/interfaces/item';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -18,7 +17,7 @@ export class InvoiceComponent implements OnInit {
 
   fileErrMsg:string = "You must only select .json files";
   importErr:boolean = false;
-  jsonErrMsg:string = "Your json inputs  is not compatible with system requirements";
+  jsonErrMsg:string = "Sorry, json inputs  is not compatible with system requirements";
   jsonErr:boolean = false;
   speceficErr:string = null;
   showBtnsContainer:boolean = false;

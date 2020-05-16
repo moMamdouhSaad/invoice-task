@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { Invoice } from 'src/app/interfaces/invoice';
 import * as _ from 'lodash';
-import { Item } from 'src/app/interfaces/item';
+
+const jsonKeysMustInclued =
+  [
+'companyName', 'address', 'date', 'receiptNo', 'city','contactName','billToClientCompanyName',
+'billToAddress', 'billToPhone', 'billToEmail', 'shipToName', 'shipToClientCompanyName',
+'shipToAddress', 'shipToPhone', 'items', 'notes', 'discount', 'taxRate', 'shipping'
+  ];
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ReadFileService {
 
   private dataInFile = new Subject<any>();
@@ -16,12 +22,7 @@ export class ReadFileService {
   private errMsg = new BehaviorSubject<string>(null);
 
   constructor() { }
- jsonKeysMustInclued =
-[
-'companyName', 'address', 'date', 'receiptNo', 'city','contactName','billToClientCompanyName',
-'billToAddress', 'billToPhone', 'billToEmail', 'shipToName', 'shipToClientCompanyName',
-'shipToAddress', 'shipToPhone', 'items', 'notes', 'discount', 'taxRate', 'shipping'
-];
+ 
 
 
 
@@ -39,12 +40,14 @@ export class ReadFileService {
          break;
          case "discount":
          case "taxRate":
-         case "shipping":  
+         case "shipping":
+         case "receiptNo":  
          if( typeof obj[key] != 'number'){
           this.setJsonFileErr(true);
           this.setFileTypeErr(null);
-          this.setErrMsg('discount, taxRate, shipping  keys must be numbers only');
-          throw new Error("Json inputs is not compatible with system requirements");         } 
+          this.setErrMsg('receiptNo, discount, taxRate, shipping  keys must be numbers only');
+          throw new Error("Json inputs is not compatible with system requirements");  
+               } 
        }   
        keys.push(key);
 
@@ -53,7 +56,7 @@ export class ReadFileService {
     }
 
     
-  checkItemsKeys(item: any){    
+  private checkItemsKeys(item: any){    
           let descriptionCheck =  item.hasOwnProperty('description');
           let qtyCheck =  item.hasOwnProperty('qty');
           let unitPriceCheck =  item.hasOwnProperty('unitPrice');
@@ -68,18 +71,20 @@ export class ReadFileService {
           return descriptionCheck && qtyCheck && unitPriceCheck
   }
 
-  setData(data:any){
+  private setData(data:any){
    let keysCameFromFile = this.getAllObjectProps(JSON.parse(data));  
-   let isCompatibleJson =_.isEqual(keysCameFromFile.sort() , this.jsonKeysMustInclued.sort())
+   let isCompatibleJson =_.isEqual(keysCameFromFile.sort() , jsonKeysMustInclued.sort())
    if(isCompatibleJson){
     this.dataInFile.next(JSON.parse(data));
     this.setJsonFileErr(false);
+    this.setErrMsg(null);
     window.scroll(0,0);
-
+    return true
    }
    else{
      this.setJsonFileErr(true);
      this.setFileTypeErr(null);
+     return false
    }
     
   }
@@ -87,14 +92,14 @@ export class ReadFileService {
     return this.dataInFile.asObservable();
   }
 
-  setFileTypeErr(value: boolean){
+  private setFileTypeErr(value: boolean){
     this.fileTypeErr.next(value);
   }
   getFileTypeErr$(){
     return this.fileTypeErr.asObservable();
   }
 
-  setJsonFileErr(value: boolean){
+  private setJsonFileErr(value: boolean){
     this.jsonFileErr.next(value);
   }
   getJsonFileErr$(){
@@ -106,13 +111,13 @@ export class ReadFileService {
     if(ext != 'json' ){
       this.setFileTypeErr(true);
       this.setJsonFileErr(null);
-      return
+      throw new Error("Selected file is not json");  
     }
     this.setFileTypeErr(false);
-    this.setCurrentFileName(file.name)
     let reader = new FileReader();
     reader.onload = () => {
-      this.setData(reader.result);
+      if(this.setData(reader.result))
+      this.setCurrentFileName(file.name)
     }
     reader.onerror = (error) => {
       console.log(error);
@@ -121,14 +126,14 @@ export class ReadFileService {
     reader.readAsText(file);
   }
 
-  setCurrentFileName(fileName:string){
+  private setCurrentFileName(fileName:string){
     this.currentViewfile.next(fileName);
   }
   getCurrentFileName$(){
     return this.currentViewfile.asObservable();
   }
 
-  setErrMsg(msg:string){
+  private setErrMsg(msg:string){
     this.errMsg.next(msg);
   }
   getErrMsg$(){

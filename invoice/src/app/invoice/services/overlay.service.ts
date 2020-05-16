@@ -18,10 +18,9 @@ export class OverlayService {
     }
     const overlayPortal = new ComponentPortal(OverlayComponent); // portal : piece of ui
     const component = this.overlayRef.attach(overlayPortal); // Attach ComponentPortal to PortalHost
-    return true
   }
 
-  public hideOverlay() {
+   hideOverlay() {
     if (!!this.overlayRef) {
       this.overlayRef.detach();
     }
