@@ -2,7 +2,7 @@
 <div class="wrapper">
   <div class='container'>
       <div [ngClass]='importErr || jsonErr ?"btn-containerErr":"btn-container"'>
-          <span> Plz import invoice's input file</span>
+          <span> Please import invoice JSON file</span>
         <button  type='file' (click)="fileInput.click()" class="btn btn-primary">Import</button>
         <input #fileInput type='file' accept=".json" (change)="fileChanged($event)" style="display:none;">
         <p *ngIf='importErr' style='color:red;margin-top:10px'>{{fileErrMsg}}</p>
